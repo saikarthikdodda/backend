@@ -1,0 +1,185 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > DealController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.java.capstone1.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: DealController (com.java.capstone1.controller)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DealController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">DealController$$SpringCGLIB$$0</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.java.capstone1.controller;
+&nbsp;import com.java.capstone1.dto.DealRequest;
+&nbsp;import com.java.capstone1.model.Deal;
+&nbsp;import com.java.capstone1.model.DealNote;
+&nbsp;import com.java.capstone1.service.DealService;
+&nbsp;import lombok.RequiredArgsConstructor;
+&nbsp;
+&nbsp;import org.springframework.security.access.prepost.PreAuthorize;
+&nbsp;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;
+&nbsp;import java.security.Principal;
+&nbsp;import java.util.List;
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/api/deals&quot;)
+&nbsp;@RequiredArgsConstructor
+&nbsp;@CrossOrigin(origins = &quot;http://localhost:4200&quot;)
+&nbsp;public class DealController {
+&nbsp;    private final DealService dealService;
+&nbsp;    @PostMapping
+&nbsp;    public Deal create(@RequestBody DealRequest req, Principal principal) {
+<b class="nc">&nbsp;        return dealService.createDeal(req, principal.getName());</b>
+&nbsp;    }
+&nbsp;    @GetMapping
+&nbsp;    public List&lt;Deal&gt; all() {
+<b class="nc">&nbsp;        return dealService.getAllDeals();</b>
+&nbsp;    }
+&nbsp;    @PatchMapping(&quot;/{id}/stage&quot;)
+&nbsp;    //@PreAuthorize(&quot;hasRole(&#39;ADMIN&#39;)&quot;)
+&nbsp;    public Deal stage(@PathVariable String id, @RequestParam String stage) {
+<b class="nc">&nbsp;        return dealService.updateStage(id, stage);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PatchMapping(&quot;/{id}/value&quot;)
+&nbsp;    @PreAuthorize(&quot;hasRole(&#39;ADMIN&#39;)&quot;)
+&nbsp;    public Deal value(@PathVariable String id, @RequestParam Long value) {
+<b class="nc">&nbsp;        return dealService.updateValue(id, value);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @DeleteMapping(&quot;/{id}&quot;)
+&nbsp;    @PreAuthorize(&quot;hasRole(&#39;ADMIN&#39;)&quot;)
+&nbsp;    public void delete(@PathVariable String id) {
+<b class="nc">&nbsp;        dealService.deleteDeal(id);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PostMapping(&quot;/{id}/notes&quot;)
+&nbsp;    public Deal addNote(@PathVariable String id, @RequestBody DealNote note) {
+<b class="nc">&nbsp;        return dealService.addNote(id, note);</b>
+&nbsp;    }
+&nbsp;    @PatchMapping(&quot;/{id}/type&quot;)
+&nbsp;    public Deal updateType(@PathVariable String id,
+&nbsp;                           @RequestParam String type) {
+<b class="nc">&nbsp;       return dealService.updateType(id, type);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PatchMapping(&quot;/{id}/sector&quot;)
+&nbsp;    public Deal updateSector(@PathVariable String id,
+&nbsp;                             @RequestParam String sector) {
+<b class="nc">&nbsp;       return dealService.updateSector(id, sector);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PatchMapping(&quot;/{id}/summary&quot;)
+&nbsp;    public Deal updateSummary(@PathVariable String id,
+&nbsp;                              @RequestParam String summary) {
+<b class="nc">&nbsp;        return dealService.updateSummary(id, summary);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-13 15:42</div>
+</div>
+</body>
+</html>

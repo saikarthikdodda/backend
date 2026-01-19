@@ -1,0 +1,167 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > DealProducer</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.java.capstone1.kafka</a>
+</div>
+
+<h1>Coverage Summary for Class: DealProducer (com.java.capstone1.kafka)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DealProducer</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.java.capstone1.kafka;
+&nbsp;
+&nbsp;import com.fasterxml.jackson.databind.ObjectMapper;
+&nbsp;import com.java.capstone1.model.Deal;
+&nbsp;import lombok.RequiredArgsConstructor;
+&nbsp;import org.springframework.kafka.core.KafkaTemplate;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;@Service
+&nbsp;@RequiredArgsConstructor
+&nbsp;public class DealProducer {
+&nbsp;
+&nbsp;    private final KafkaTemplate&lt;String, String&gt; kafkaTemplate;
+&nbsp;    private final ObjectMapper objectMapper;
+&nbsp;
+&nbsp;//    public void sendDealCreatedEvent(Deal deal) {
+&nbsp;//        try {
+&nbsp;//            String message = objectMapper.writeValueAsString(deal);
+&nbsp;//            kafkaTemplate.send(KafkaTopics.DEAL_CREATED, message);
+&nbsp;//        } catch (Exception e) {
+&nbsp;//            throw new RuntimeException(&quot;Failed to publish Kafka event&quot;, e);
+&nbsp;//        }
+&nbsp;//    }
+&nbsp;    public void sendDealCreatedEvent(Deal deal) {
+<b class="nc">&nbsp;        publish(KafkaTopics.DEAL_CREATED, deal);</b>
+&nbsp;    }
+&nbsp;    public void sendDealStageUpdatedEvent(Deal deal) {
+<b class="nc">&nbsp;        publish(KafkaTopics.DEAL_STAGE_UPDATED, deal);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void sendDealValueUpdatedEvent(Deal deal) {
+<b class="nc">&nbsp;        publish(KafkaTopics.DEAL_VALUE_UPDATED, deal);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void sendDealTypeUpdatedEvent(Deal deal) {
+<b class="nc">&nbsp;        publish(KafkaTopics.DEAL_TYPE_UPDATED, deal);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void sendDealSectorUpdatedEvent(Deal deal) {
+<b class="nc">&nbsp;        publish(KafkaTopics.DEAL_SECTOR_UPDATED, deal);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void sendDealSummaryUpdatedEvent(Deal deal) {
+<b class="nc">&nbsp;        publish(KafkaTopics.DEAL_SUMMARY_UPDATED, deal);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void sendDealNoteAddedEvent(Deal deal) {
+<b class="nc">&nbsp;        publish(KafkaTopics.DEAL_NOTE_ADDED, deal);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void sendDealDeletedEvent(String dealId) {
+<b class="nc">&nbsp;        publish(KafkaTopics.DEAL_DELETED, dealId);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void publish(String topic, Object payload) {
+&nbsp;        try {
+<b class="nc">&nbsp;            kafkaTemplate.send(topic, objectMapper.writeValueAsString(payload));</b>
+&nbsp;        } catch (Exception e) {
+<b class="nc">&nbsp;            throw new RuntimeException(&quot;Kafka publish failed&quot;, e);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-01-13 15:42</div>
+</div>
+</body>
+</html>
