@@ -13,10 +13,12 @@ pipeline {
         }
 
         stage('Build with Maven') {
-            steps {
-                sh './mvnw clean package -DskipTests'
-            }
-        }
+    steps {
+        sh 'chmod +x mvnw'
+        sh './mvnw clean package -DskipTests'
+    }
+}
+
 
         stage('Build Docker Image') {
             steps {
